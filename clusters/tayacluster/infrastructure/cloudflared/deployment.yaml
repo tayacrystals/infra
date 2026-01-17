@@ -18,11 +18,17 @@ spec:
           image: cloudflare/cloudflared:latest
           args:
             - tunnel
+            - --config
+            - /etc/cloudflared/config.yaml
             - --no-autoupdate
             - run
           envFrom:
             - secretRef:
                 name: cloudflared-tunnel
+          volumeMounts:
+            - name: config
+              mountPath: /etc/cloudflared
+              readOnly: true
           resources:
             limits:
               memory: "128Mi"
@@ -30,3 +36,7 @@ spec:
             requests:
               memory: "64Mi"
               cpu: "10m"
+      volumes:
+        - name: config
+          configMap:
+            name: cloudflared-config
