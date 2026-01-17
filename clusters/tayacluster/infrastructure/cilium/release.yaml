@@ -18,10 +18,19 @@ spec:
     ipam:
       mode: kubernetes
 
+    # Use native routing instead of VXLAN tunnel for flat L2 network
+    routingMode: native
+    ipv4NativeRoutingCIDR: 10.244.0.0/16
+    autoDirectNodeRoutes: true
+
     # Kube-proxy replacement
     kubeProxyReplacement: true
     k8sServiceHost: localhost
     k8sServicePort: 7445  # KubePrism port from Talos config
+
+    # BPF masquerading for egress
+    bpf:
+      masquerade: true
 
     # Security
     securityContext:
