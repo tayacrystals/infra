@@ -8,14 +8,10 @@ spec:
     matchLabels:
       app: cloudflared
   egress:
-    - toEndpoints:
-        - matchLabels:
-            io.kubernetes.pod.namespace: kube-system
-            k8s-app: cilium
-      toPorts:
-        - ports:
-            - port: "80"
-              protocol: TCP
+    - toServices:
+        - k8sService:
+            serviceName: cilium-ingress
+            namespace: kube-system
     - toEndpoints:
         - matchLabels:
             io.kubernetes.pod.namespace: kube-system
