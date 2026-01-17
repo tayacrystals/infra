@@ -4,4 +4,4 @@ resources:
   - cilium
   - cert-manager
   - external-secrets
-  # - cloudflared  # Uncomment after creating the tunnel secret in Bitwarden
+  - cloudflared
