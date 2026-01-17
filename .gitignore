@@ -1,0 +1,7 @@
+.env
+
+# Talos sensitive files
+talos/talosconfig
+talos/kubeconfig
+talos/controlplane.yaml
+talos/worker.yaml

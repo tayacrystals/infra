@@ -1,0 +1,36 @@
+[tools]
+talosctl = "1.12.1"
+flux2 = "2.7.5"
+helm = "4.0.5"
+kubectl = "1.35.0"
+
+[env]
+TALOSCONFIG = "{{config_root}}/talos/talosconfig"
+KUBECONFIG = "{{config_root}}/talos/kubeconfig"
+NODE_1_IP = "192.168.178.101"
+NODE_1_TYPE = "controlplane"
+NODE_2_IP = "192.168.178.102"
+NODE_2_TYPE = "controlplane"
+NODE_3_IP = "192.168.178.103"
+NODE_3_TYPE = "controlplane"
+NODE_4_IP = "192.168.178.104"
+NODE_4_TYPE = "worker"
+
+[tasks]
+
+[tasks.bootrap]
+description = "Bootstrap the cluster"
+run = "echo not implemented yet"
+
+[tasks.talos-health]
+description = "Check the health of the Talos nodes"
+run = "talosctl -n {{NODE_1_IP}} health"
+
+[tasks.talos-dashboard]
+description = "Open the talos dashboard"
+run = "talosctl dashboard -n {{NODE_1_IP}} -n {{NODE_2_IP}} -n {{NODE_3_IP}} -n {{NODE_4_IP}}"
+
+[tasks.talos-apply]
+description = "Apply Talos configuration to all nodes"
+run = "talosctl apply-config -n {{NODE_1_IP}} -f talos/{{NODE_1_TYPE}}.yaml && talosctl apply-config -n {{NODE_2_IP}} -f talos/{{NODE_2_TYPE}}.yaml && talosctl apply-config -n {{NODE_3_IP}} -f talos/{{NODE_3_TYPE}}.yaml && talosctl apply-config -n {{NODE_4_IP}} -f talos/{{NODE_4_TYPE}}.yaml"
+
