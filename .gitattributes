@@ -1,0 +1,9 @@
+# Enforce LF line endings for all text files
+* text=auto eol=lf
+
+# Ensure shell scripts use LF
+*.sh text eol=lf
+
+# Ensure YAML files use LF
+*.yaml text eol=lf
+*.yml text eol=lf
