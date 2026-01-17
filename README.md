@@ -14,7 +14,7 @@ Internet → Cloudflare Edge → cloudflared → Cilium Ingress → Services
 |-----------|---------|
 | **Talos OS** | Immutable Kubernetes OS on all nodes |
 | **Cilium** | CNI, kube-proxy replacement, ingress controller |
-| **Flux** | GitOps continuous delivery |
+| **Flux Operator** | GitOps continuous delivery (manages Flux lifecycle) |
 | **cert-manager** | TLS certificate management |
 | **External Secrets** | Secrets sync from Bitwarden |
 | **cloudflared** | Cloudflare Tunnel for ingress (no public IP needed) |
@@ -27,8 +27,9 @@ Internet → Cloudflare Edge → cloudflared → Cilium Ingress → Services
 │   ├── worker.yaml             # Generated worker config
 │   └── *-patch.yaml            # Patches applied during generation
 ├── clusters/tayacluster/
-│   ├── flux-system/            # Flux bootstrap (do not edit)
+│   ├── flux-instance.yaml      # FluxInstance CRD (Flux configuration)
 │   ├── infrastructure/         # Core platform services
+│   │   ├── flux-operator/      # Flux Operator Helm release
 │   │   ├── cilium/
 │   │   ├── cert-manager/
 │   │   ├── external-secrets/
@@ -79,4 +80,4 @@ Services are exposed via Cloudflare Tunnel:
 
 **TODO:**
 - Disk layout documentation (NVMe vs HDD usage)
-- Flux Operator with MCP integration
+- Flux Operator MCP integration for AI-assisted operations
