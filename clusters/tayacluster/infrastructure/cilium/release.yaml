@@ -67,4 +67,4 @@ spec:
       default: true
       loadbalancerMode: shared
       service:
-        type: LoadBalancer
+        type: NodePort
