@@ -22,6 +22,10 @@ spec:
     routingMode: native
     ipv4NativeRoutingCIDR: 10.244.0.0/16
     autoDirectNodeRoutes: true
+    
+    # Improve stability with stricter routing
+    strictMode: true
+    strictModeCIDR: 10.244.0.0/16
 
     # Kube-proxy replacement
     kubeProxyReplacement: true
@@ -61,6 +65,6 @@ spec:
     ingressController:
       enabled: true
       default: true
-      loadbalancerMode: dedicated
+      loadbalancerMode: shared
       service:
-        type: NodePort
+        type: LoadBalancer

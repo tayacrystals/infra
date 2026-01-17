@@ -33,3 +33,5 @@ ingressController:
   enabled: true
   default: true
   loadbalancerMode: shared
+  service:
+    type: LoadBalancer
