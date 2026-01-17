@@ -52,4 +52,6 @@ spec:
     ingressController:
       enabled: true
       default: true
-      loadbalancerMode: shared
+      loadbalancerMode: dedicated
+      service:
+        type: NodePort
