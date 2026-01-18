@@ -5,3 +5,4 @@ talos/talosconfig
 talos/kubeconfig
 talos/controlplane.yaml
 talos/worker.yaml
+talos/secrets.yaml

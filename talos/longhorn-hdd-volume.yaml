@@ -1,0 +1,7 @@
+apiVersion: v1alpha1
+kind: UserVolumeConfig
+name: longhorn-hdd
+volumeType: disk
+provisioning:
+  diskSelector:
+    match: disk.transport == "sata" && disk.size > 4000000000000u

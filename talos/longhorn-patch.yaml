@@ -1,0 +1,24 @@
+machine:
+  install:
+    # Use Image Factory installer with extensions baked in:
+    # factory.talos.dev/installer/613e1592b2da41ae5e265e8789429f22e121aab91cb4deb6bc3c0b6262961245:v1.12.1
+    # Extensions: iscsi-tools, util-linux-tools
+    image: factory.talos.dev/installer/613e1592b2da41ae5e265e8789429f22e121aab91cb4deb6bc3c0b6262961245:v1.12.1
+  kubelet:
+    extraMounts:
+      # NVMe storage (ephemeral partition)
+      - destination: /var/lib/longhorn
+        type: bind
+        source: /var/mnt/longhorn
+        options:
+          - bind
+          - rshared
+          - rw
+      # HDD storage (dedicated disk)
+      - destination: /var/lib/longhorn-hdd
+        type: bind
+        source: /var/mnt/longhorn-hdd
+        options:
+          - bind
+          - rshared
+          - rw
