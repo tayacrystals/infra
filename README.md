@@ -18,6 +18,7 @@ Internet → Cloudflare Edge → cloudflared → Cilium Ingress → Services
 | **cert-manager** | TLS certificate management |
 | **External Secrets** | Secrets sync from Bitwarden |
 | **cloudflared** | Cloudflare Tunnel for ingress (no public IP needed) |
+| **Longhorn** | Distributed block storage (NVMe + HDD) |
 
 ## Repository Structure
 
@@ -33,7 +34,8 @@ Internet → Cloudflare Edge → cloudflared → Cilium Ingress → Services
 │   │   ├── cilium/
 │   │   ├── cert-manager/
 │   │   ├── external-secrets/
-│   │   └── cloudflared/
+│   │   ├── cloudflared/
+│   │   └── longhorn/
 │   └── apps/                   # User applications
 │       └── whoami/             # Demo app
 └── info.md                     # Network topology & hardware specs
@@ -73,12 +75,24 @@ Services are exposed via Cloudflare Tunnel:
 
 ---
 
+## Internal Dashboards
+
+These dashboards are not exposed publicly. Access via port-forward:
+
+```bash
+# Longhorn Storage UI
+kubectl port-forward -n longhorn-system svc/longhorn-frontend 8080:80
+# Open http://localhost:8080
+
+# Flux Operator Dashboard
+kubectl port-forward -n flux-system svc/flux-operator 8081:80
+# Open http://localhost:8081
+```
+
 ## Notes
 
 **Not yet automated:**
 - Talos config generation (patches must be applied manually via `talosctl gen config`)
 
 **TODO:**
-- Disk layout documentation (NVMe vs HDD usage)
 - Flux Operator MCP integration for AI-assisted operations
-- Longhorn dashboard authentication, currently open to the internet
