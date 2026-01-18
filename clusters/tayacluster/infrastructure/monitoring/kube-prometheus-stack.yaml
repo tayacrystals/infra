@@ -21,7 +21,10 @@ spec:
     # Grafana configuration
     grafana:
       enabled: true
-      adminPassword: prom-operator
+      admin:
+        existingSecret: grafana-admin-password
+        userKey: admin-user
+        passwordKey: admin-password
       persistence:
         enabled: true
         size: 5Gi
@@ -33,12 +36,25 @@ spec:
         limits:
           cpu: 500m
           memory: 512Mi
+      # Data sources configured via sidecar
+      sidecar:
+        datasources:
+          enabled: true
+          defaultDatasourceEnabled: true  # Prometheus as default
       additionalDataSources:
         - name: Loki
           type: loki
           url: http://loki:3100
           access: proxy
           isDefault: false
+          jsonData:
+            maxLines: 1000
+        - name: Alertmanager
+          type: alertmanager
+          url: http://kube-prometheus-stack-alertmanager:9093
+          access: proxy
+          jsonData:
+            implementation: prometheus
 
     # Prometheus configuration
     prometheus:

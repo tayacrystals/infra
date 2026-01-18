@@ -4,6 +4,7 @@ resources:
   - namespace.yaml
   - prometheus-repository.yaml
   - grafana-repository.yaml
+  - grafana-secrets.yaml
   - kube-prometheus-stack.yaml
   - loki.yaml
   - promtail.yaml
