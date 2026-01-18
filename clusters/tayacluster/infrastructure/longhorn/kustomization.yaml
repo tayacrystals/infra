@@ -5,4 +5,4 @@ resources:
   - repository.yaml
   - release.yaml
   - storageclasses.yaml
-  - ingress.yaml
+  # ingress.yaml removed - access via: kubectl port-forward -n longhorn-system svc/longhorn-frontend 8080:80

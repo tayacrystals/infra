@@ -81,3 +81,4 @@ Services are exposed via Cloudflare Tunnel:
 **TODO:**
 - Disk layout documentation (NVMe vs HDD usage)
 - Flux Operator MCP integration for AI-assisted operations
+- Longhorn dashboard authentication, currently open to the internet
