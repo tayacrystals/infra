@@ -49,6 +49,12 @@ spec:
           memory: 1Gi
       persistence:
         enabled: false
+      extraVolumes:
+        - name: data
+          emptyDir: {}
+      extraVolumeMounts:
+        - name: data
+          mountPath: /var/loki
 
     # Disable other deployment modes
     backend:
