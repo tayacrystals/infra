@@ -23,8 +23,7 @@ spec:
       enabled: true
       adminPassword: prom-operator
       persistence:
-        enabled: true
-        size: 5Gi
+        enabled: false
       resources:
         requests:
           cpu: 100m
@@ -50,14 +49,6 @@ spec:
           limits:
             cpu: 1000m
             memory: 2Gi
-        storageSpec:
-          volumeClaimTemplate:
-            spec:
-              accessModes:
-                - ReadWriteOnce
-              resources:
-                requests:
-                  storage: 20Gi
         # Enable ServiceMonitor discovery across all namespaces
         serviceMonitorSelectorNilUsesHelmValues: false
         serviceMonitorSelector: {}
@@ -77,14 +68,6 @@ spec:
           limits:
             cpu: 200m
             memory: 128Mi
-        storage:
-          volumeClaimTemplate:
-            spec:
-              accessModes:
-                - ReadWriteOnce
-              resources:
-                requests:
-                  storage: 1Gi
 
     # Disabled components for Talos
     kubeEtcd:

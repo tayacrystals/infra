@@ -48,8 +48,7 @@ spec:
           cpu: 500m
           memory: 1Gi
       persistence:
-        enabled: true
-        size: 20Gi
+        enabled: false
 
     # Disable other deployment modes
     backend:
