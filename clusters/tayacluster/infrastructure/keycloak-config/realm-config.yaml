@@ -68,8 +68,10 @@ data:
         secret: "$(OAUTH2_PROXY_CLIENT_SECRET)"
         redirectUris:
           - "https://longhorn.taya.net/oauth2/callback"
+          - "https://flux.taya.net/oauth2/callback"
         webOrigins:
           - "https://longhorn.taya.net"
+          - "https://flux.taya.net"
         standardFlowEnabled: true
         directAccessGrantsEnabled: false
         publicClient: false

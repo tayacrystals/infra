@@ -12,5 +12,6 @@ resources:
   - keycloak
   - keycloak-config
   - oauth2-proxy
+  - weave-gitops
   - monitoring
   - tailscale
