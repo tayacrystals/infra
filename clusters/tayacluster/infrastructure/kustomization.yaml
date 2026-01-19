@@ -5,7 +5,12 @@ resources:
   - cilium
   - cert-manager
   - external-secrets
+  - external-secrets-config
   - cloudflared
   - longhorn
+  - cloudnative-pg
+  - keycloak
+  - keycloak-config
+  - oauth2-proxy
   - monitoring
   - tailscale

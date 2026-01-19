@@ -1,0 +1,92 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: keycloak-realm-config
+  namespace: keycloak
+data:
+  realm.yaml: |
+    realm: tayacluster
+    enabled: true
+    displayName: "TayaCluster SSO"
+    loginWithEmailAllowed: true
+    registrationAllowed: false
+    resetPasswordAllowed: true
+    rememberMe: true
+    sslRequired: none
+
+    roles:
+      realm:
+        - name: admin
+          description: "Administrator role"
+        - name: user
+          description: "Standard user role"
+
+    groups:
+      - name: admin
+        realmRoles:
+          - admin
+          - user
+      - name: users
+        realmRoles:
+          - user
+
+    clients:
+      - clientId: grafana
+        name: Grafana
+        enabled: true
+        clientAuthenticatorType: client-secret
+        secret: "$(GRAFANA_CLIENT_SECRET)"
+        redirectUris:
+          - "https://grafana.taya.net/*"
+        webOrigins:
+          - "https://grafana.taya.net"
+        standardFlowEnabled: true
+        directAccessGrantsEnabled: false
+        publicClient: false
+        protocol: openid-connect
+        defaultClientScopes:
+          - profile
+          - email
+          - roles
+        optionalClientScopes:
+          - offline_access
+        protocolMappers:
+          - name: groups
+            protocol: openid-connect
+            protocolMapper: oidc-group-membership-mapper
+            config:
+              claim.name: groups
+              full.path: "false"
+              id.token.claim: "true"
+              access.token.claim: "true"
+              userinfo.token.claim: "true"
+
+      - clientId: oauth2-proxy
+        name: OAuth2 Proxy
+        enabled: true
+        clientAuthenticatorType: client-secret
+        secret: "$(OAUTH2_PROXY_CLIENT_SECRET)"
+        redirectUris:
+          - "https://longhorn.taya.net/oauth2/callback"
+        webOrigins:
+          - "https://longhorn.taya.net"
+        standardFlowEnabled: true
+        directAccessGrantsEnabled: false
+        publicClient: false
+        protocol: openid-connect
+        defaultClientScopes:
+          - profile
+          - email
+          - roles
+        optionalClientScopes:
+          - offline_access
+        protocolMappers:
+          - name: groups
+            protocol: openid-connect
+            protocolMapper: oidc-group-membership-mapper
+            config:
+              claim.name: groups
+              full.path: "false"
+              id.token.claim: "true"
+              access.token.claim: "true"
+              userinfo.token.claim: "true"

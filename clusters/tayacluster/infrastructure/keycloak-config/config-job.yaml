@@ -1,0 +1,87 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: keycloak-config
+  namespace: keycloak
+  annotations:
+    kustomize.toolkit.fluxcd.io/ssa: merge
+spec:
+  ttlSecondsAfterFinished: 300
+  template:
+    spec:
+      restartPolicy: OnFailure
+      initContainers:
+        - name: wait-for-keycloak
+          image: curlimages/curl:8.5.0
+          command:
+            - /bin/sh
+            - -c
+            - |
+              echo "Waiting for Keycloak to be ready..."
+              until curl -sf http://keycloak-service:8080/health/ready; do
+                echo "Keycloak not ready, waiting..."
+                sleep 10
+              done
+              echo "Keycloak is ready!"
+        - name: substitute-secrets
+          image: bhgedigital/envsubst:latest
+          command:
+            - /bin/sh
+            - -c
+            - |
+              envsubst < /config-input/realm.yaml > /config-output/realm.yaml
+              cat /config-output/realm.yaml
+          env:
+            - name: GRAFANA_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: keycloak-client-secrets
+                  key: GRAFANA_CLIENT_SECRET
+            - name: OAUTH2_PROXY_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: keycloak-client-secrets
+                  key: OAUTH2_PROXY_CLIENT_SECRET
+          volumeMounts:
+            - name: realm-config-input
+              mountPath: /config-input
+            - name: realm-config-output
+              mountPath: /config-output
+      containers:
+        - name: keycloak-config-cli
+          image: adorsys/keycloak-config-cli:6.1.6-26.0.5
+          env:
+            - name: KEYCLOAK_URL
+              value: http://keycloak-service:8080
+            - name: KEYCLOAK_USER
+              valueFrom:
+                secretKeyRef:
+                  name: keycloak-admin-credentials
+                  key: username
+            - name: KEYCLOAK_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: keycloak-admin-credentials
+                  key: password
+            - name: KEYCLOAK_AVAILABILITYCHECK_ENABLED
+              value: "true"
+            - name: KEYCLOAK_AVAILABILITYCHECK_TIMEOUT
+              value: "120s"
+            - name: IMPORT_FILES_LOCATIONS
+              value: /config/realm.yaml
+          volumeMounts:
+            - name: realm-config-output
+              mountPath: /config
+          resources:
+            requests:
+              cpu: 100m
+              memory: 256Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi
+      volumes:
+        - name: realm-config-input
+          configMap:
+            name: keycloak-realm-config
+        - name: realm-config-output
+          emptyDir: {}

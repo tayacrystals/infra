@@ -1,0 +1,49 @@
+apiVersion: k8s.keycloak.org/v2alpha1
+kind: Keycloak
+metadata:
+  name: keycloak
+  namespace: keycloak
+spec:
+  instances: 1
+  hostname:
+    hostname: auth.taya.net
+  http:
+    httpEnabled: true
+    httpPort: 8080
+    httpsPort: 8443
+  proxy:
+    headers: xforwarded
+  db:
+    vendor: postgres
+    host: keycloak-db-rw
+    database: keycloak
+    port: 5432
+    usernameSecret:
+      name: keycloak-db-credentials
+      key: username
+    passwordSecret:
+      name: keycloak-db-credentials
+      key: password
+  resources:
+    requests:
+      cpu: 200m
+      memory: 512Mi
+    limits:
+      cpu: 1000m
+      memory: 1Gi
+  unsupported:
+    podTemplate:
+      spec:
+        containers:
+          - name: keycloak
+            env:
+              - name: KC_BOOTSTRAP_ADMIN_USERNAME
+                valueFrom:
+                  secretKeyRef:
+                    name: keycloak-admin-credentials
+                    key: username
+              - name: KC_BOOTSTRAP_ADMIN_PASSWORD
+                valueFrom:
+                  secretKeyRef:
+                    name: keycloak-admin-credentials
+                    key: password

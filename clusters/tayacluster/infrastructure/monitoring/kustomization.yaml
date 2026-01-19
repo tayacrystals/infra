@@ -5,6 +5,7 @@ resources:
   - prometheus-repository.yaml
   - grafana-repository.yaml
   - grafana-secrets.yaml
+  - grafana-oidc-secret.yaml
   - kube-prometheus-stack.yaml
   - loki.yaml
   - promtail.yaml

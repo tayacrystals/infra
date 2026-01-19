@@ -36,6 +36,21 @@ spec:
         limits:
           cpu: 500m
           memory: 512Mi
+      envFromSecret: grafana-oidc-secret
+      grafana.ini:
+        server:
+          root_url: https://grafana.taya.net
+        auth.generic_oauth:
+          enabled: true
+          name: Keycloak
+          allow_sign_up: true
+          client_id: grafana
+          client_secret: ${client-secret}
+          scopes: openid email profile
+          auth_url: https://auth.taya.net/realms/tayacluster/protocol/openid-connect/auth
+          token_url: https://auth.taya.net/realms/tayacluster/protocol/openid-connect/token
+          api_url: https://auth.taya.net/realms/tayacluster/protocol/openid-connect/userinfo
+          role_attribute_path: contains(groups[*], 'admin') && 'Admin' || 'Viewer'
       # Data sources configured via sidecar
       sidecar:
         datasources:
