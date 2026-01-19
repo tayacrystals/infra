@@ -19,6 +19,7 @@ Internet → Cloudflare Edge → cloudflared → Cilium Ingress → Services
 | **External Secrets** | Secrets sync from Bitwarden |
 | **cloudflared** | Cloudflare Tunnel for ingress (no public IP needed) |
 | **Longhorn** | Distributed block storage (NVMe + HDD) |
+| **Tailscale** | Secure offsite access to K8s API via tailnet |
 
 ## Repository Structure
 
@@ -35,7 +36,8 @@ Internet → Cloudflare Edge → cloudflared → Cilium Ingress → Services
 │   │   ├── cert-manager/
 │   │   ├── external-secrets/
 │   │   ├── cloudflared/
-│   │   └── longhorn/
+│   │   ├── longhorn/
+│   │   └── tailscale/
 │   └── apps/                   # User applications
 │       └── whoami/             # Demo app
 └── info.md                     # Network topology & hardware specs
@@ -73,6 +75,29 @@ Services are exposed via Cloudflare Tunnel:
 2. Set the hostname (e.g., `app.taya.net`)
 3. Configure the route in Cloudflare dashboard
 
+## Offsite Access
+
+The Kubernetes API is accessible from anywhere via Tailscale. This allows `kubectl` access when away from the local network.
+
+**Setup (one-time on your device):**
+
+```bash
+# Configure kubectl to use Tailscale
+tailscale configure kubeconfig tayacluster-operator
+```
+
+**Usage:**
+
+```bash
+# Use the Tailscale context
+kubectl --context=tailscale-tayacluster-operator get nodes
+
+# Or set as default
+kubectl config use-context tailscale-tayacluster-operator
+```
+
+Your Tailscale identity maps to Kubernetes RBAC via the operator. Ensure your Tailscale ACLs grant appropriate access.
+
 ---
 
 ## Internal Dashboards
@@ -96,3 +121,5 @@ kubectl port-forward -n flux-system svc/flux-operator 8081:80
 
 **TODO:**
 - Flux Operator MCP integration for AI-assisted operations
+- Connect other services into the monitoring stack?
+- SSO with Keycloak
