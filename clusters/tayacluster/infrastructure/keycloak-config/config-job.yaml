@@ -18,7 +18,7 @@ spec:
             - -c
             - |
               echo "Waiting for Keycloak to be ready..."
-              until curl -sf http://keycloak-service:8080/health/ready; do
+              until curl -sf http://keycloak-service:9000/health/ready; do
                 echo "Keycloak not ready, waiting..."
                 sleep 10
               done
@@ -49,7 +49,7 @@ spec:
               mountPath: /config-output
       containers:
         - name: keycloak-config-cli
-          image: adorsys/keycloak-config-cli:6.1.6-26.0.5
+          image: adorsys/keycloak-config-cli:6.4.0-26.0.5
           env:
             - name: KEYCLOAK_URL
               value: http://keycloak-service:8080
@@ -64,9 +64,7 @@ spec:
                   name: keycloak-admin-credentials
                   key: password
             - name: KEYCLOAK_AVAILABILITYCHECK_ENABLED
-              value: "true"
-            - name: KEYCLOAK_AVAILABILITYCHECK_TIMEOUT
-              value: "120s"
+              value: "false"
             - name: IMPORT_FILES_LOCATIONS
               value: /config/realm.yaml
           volumeMounts:
