@@ -7,5 +7,4 @@ resources:
   - postgres-secret.yaml
   - postgres-cluster.yaml
   - keycloak-secrets.yaml
-  - keycloak-instance.yaml
-  - ingress.yaml
+  - instance-kustomization.yaml
