@@ -49,7 +49,3 @@ spec:
                   secretKeyRef:
                     name: keycloak-admin-credentials
                     key: password
-              - name: KC_HOSTNAME_STRICT_HTTPS
-                value: "true"
-              - name: KC_HOSTNAME_URL
-                value: "https://auth.taya.net"

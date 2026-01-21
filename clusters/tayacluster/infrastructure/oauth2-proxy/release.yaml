@@ -23,6 +23,10 @@ spec:
     extraArgs:
       provider: oidc
       oidc-issuer-url: https://auth.taya.net/realms/tayacluster
+      skip-oidc-discovery: "true"
+      login-url: https://auth.taya.net/realms/tayacluster/protocol/openid-connect/auth
+      redeem-url: http://keycloak-service.keycloak.svc.cluster.local:8080/realms/tayacluster/protocol/openid-connect/token
+      oidc-jwks-url: http://keycloak-service.keycloak.svc.cluster.local:8080/realms/tayacluster/protocol/openid-connect/certs
       email-domain: "*"
       cookie-secure: "true"
       cookie-samesite: lax
