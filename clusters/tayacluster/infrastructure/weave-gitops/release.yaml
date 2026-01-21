@@ -17,6 +17,9 @@ spec:
     adminUser:
       create: false
 
+    additionalArgs:
+      - --insecure-no-authentication-user=admin
+
     rbac:
       create: true
       impersonationResourceNames: ["admin"]
