@@ -7,13 +7,13 @@ kubectl = "1.35.0"
 [env]
 TALOSCONFIG = "{{config_root}}/talos/talosconfig"
 KUBECONFIG = "{{config_root}}/talos/kubeconfig"
-NODE_1_IP = "192.168.178.101"
+NODE_1_IP = "192.168.0.101"
 NODE_1_TYPE = "controlplane"
-NODE_2_IP = "192.168.178.102"
+NODE_2_IP = "192.168.0.102"
 NODE_2_TYPE = "controlplane"
-NODE_3_IP = "192.168.178.103"
+NODE_3_IP = "192.168.0.103"
 NODE_3_TYPE = "controlplane"
-NODE_4_IP = "192.168.178.104"
+NODE_4_IP = "192.168.0.104"
 NODE_4_TYPE = "worker"
 
 [tasks]

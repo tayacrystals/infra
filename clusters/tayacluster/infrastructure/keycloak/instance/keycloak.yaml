@@ -7,6 +7,7 @@ spec:
   instances: 1
   hostname:
     hostname: auth.taya.net
+    strict: true
   http:
     httpEnabled: true
     httpPort: 8080
