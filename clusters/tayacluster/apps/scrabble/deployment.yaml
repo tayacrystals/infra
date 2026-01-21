@@ -4,7 +4,7 @@ metadata:
   name: scrabble
   namespace: scrabble
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: scrabble
