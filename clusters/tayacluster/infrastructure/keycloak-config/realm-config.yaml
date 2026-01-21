@@ -12,7 +12,9 @@ data:
     registrationAllowed: false
     resetPasswordAllowed: true
     rememberMe: true
-    sslRequired: none
+    sslRequired: external
+    attributes:
+      frontendUrl: "https://auth.taya.net"
 
     roles:
       realm:
