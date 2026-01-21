@@ -8,6 +8,7 @@ spec:
   hostname:
     hostname: auth.taya.net
     strict: true
+    strictBackchannel: true
   http:
     httpEnabled: true
     httpPort: 8080
