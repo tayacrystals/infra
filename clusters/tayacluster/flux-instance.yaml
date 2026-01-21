@@ -19,7 +19,7 @@ spec:
     domain: "cluster.local"
   sync:
     kind: GitRepository
-    url: "ssh://git@github.com/tayacrystals/infra.git"
+    url: "https://github.com/tayacrystals/infra.git"
     ref: "refs/heads/main"
     path: "clusters/tayacluster"
     pullSecret: "flux-system"
