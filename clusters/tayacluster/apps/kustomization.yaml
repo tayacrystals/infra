@@ -3,4 +3,4 @@ kind: Kustomization
 resources:
   - whoami
   - scrabble
-  - hytalewiki
+  - wiki
