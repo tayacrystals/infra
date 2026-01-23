@@ -17,20 +17,8 @@ spec:
     replicaCount: 1
 
     config:
-      clientID: oauth2-proxy
+      existingSecret: oauth2-proxy-secrets
       cookieName: _oauth2_proxy
-
-    extraEnv:
-      - name: OAUTH2_PROXY_CLIENT_SECRET
-        valueFrom:
-          secretKeyRef:
-            name: oauth2-proxy
-            key: client-secret
-      - name: OAUTH2_PROXY_COOKIE_SECRET
-        valueFrom:
-          secretKeyRef:
-            name: oauth2-proxy
-            key: cookie-secret
 
     extraArgs:
       provider: oidc
