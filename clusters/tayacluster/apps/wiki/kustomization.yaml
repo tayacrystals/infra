@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
   - namespace.yaml
   - external-secret.yaml
+  - localsettings-secret.yaml
   - mariadb-service.yaml
   - mariadb-statefulset.yaml
   - deployment.yaml

@@ -50,6 +50,10 @@ spec:
             secretKeyRef:
               name: mediawiki-credentials
               key: db-password
+        volumeMounts:
+        - name: localsettings
+          mountPath: /var/www/html/LocalSettings.php
+          subPath: LocalSettings.php
         resources:
           requests:
             memory: "256Mi"
@@ -69,3 +73,7 @@ spec:
             port: 80
           initialDelaySeconds: 10
           periodSeconds: 5
+      volumes:
+      - name: localsettings
+        secret:
+          secretName: mediawiki-local-settings-php
