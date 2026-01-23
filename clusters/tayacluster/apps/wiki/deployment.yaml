@@ -37,7 +37,7 @@ spec:
         - name: MEDIAWIKI_DB_TYPE
           value: "mysql"
         - name: MEDIAWIKI_DB_SERVER
-          value: "localhost"
+          value: "mariadb"
         - name: MEDIAWIKI_DB_NAME
           value: "mediawiki"
         - name: MEDIAWIKI_DB_USER
