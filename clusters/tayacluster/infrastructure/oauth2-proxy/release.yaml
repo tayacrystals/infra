@@ -18,8 +18,9 @@ spec:
 
     config:
       clientID: oauth2-proxy
+      clientSecret: hHvYx4KynO6PZVuyLR89SX8MpWAkZzo1
       cookieName: _oauth2_proxy
-      existingSecret: oauth2-proxy-secrets
+      cookieSecret: kK7mP2nQ9sL4wR6yT8uV0zA3bC5dE1fG
 
     extraArgs:
       provider: oidc
