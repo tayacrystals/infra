@@ -1,7 +1,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: oauth2-proxy
+  name: oauth2-proxy-longhorn
   namespace: oauth2-proxy
 spec:
   interval: 1h
@@ -18,7 +18,7 @@ spec:
 
     config:
       existingSecret: oauth2-proxy-secrets
-      cookieName: _oauth2_proxy
+      cookieName: _oauth2_proxy_longhorn
 
     extraArgs:
       provider: oidc

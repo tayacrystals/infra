@@ -33,6 +33,7 @@ spec:
       set-xauthrequest: "true"
       set-authorization-header: "true"
       pass-authorization-header: "true"
+      pass-access-token: "true"
       skip-provider-button: "true"
       upstream: http://flux-operator.flux-system.svc.cluster.local:8081
       http-address: 0.0.0.0:4180
