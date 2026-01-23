@@ -1,3 +1,7 @@
+- fix oauthproxy 500 on login
+- fix grafana login
+
+
 - start moving services from my other servers to this cluster
 - set up grafana dashboards
 
