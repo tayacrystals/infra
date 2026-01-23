@@ -98,22 +98,6 @@ kubectl config use-context tailscale-tayacluster-operator
 
 Your Tailscale identity maps to Kubernetes RBAC via the operator. Ensure your Tailscale ACLs grant appropriate access.
 
----
-
-## Internal Dashboards
-
-These dashboards are not exposed publicly. Access via port-forward:
-
-```bash
-# Longhorn Storage UI
-kubectl port-forward -n longhorn-system svc/longhorn-frontend 8080:80
-# Open http://localhost:8080
-
-# Flux Operator Dashboard
-kubectl port-forward -n flux-system svc/flux-operator 8081:80
-# Open http://localhost:8081
-```
-
 ## Notes
 
 **Not yet automated:**
@@ -122,4 +106,4 @@ kubectl port-forward -n flux-system svc/flux-operator 8081:80
 **TODO:**
 - Flux Operator MCP integration for AI-assisted operations
 - Connect other services into the monitoring stack?
-- SSO with Keycloak
+- SSO with Keycloak (half set up, but is broken)
