@@ -40,11 +40,11 @@ spec:
               key: db-password
         resources:
           requests:
-            memory: "256Mi"
-            cpu: "100m"
+            memory: "2Gi"
+            cpu: "1"
           limits:
-            memory: "512Mi"
-            cpu: "500m"
+            memory: "4Gi"
+            cpu: "2"
         volumeMounts:
         - name: data
           mountPath: /var/lib/mysql
@@ -63,7 +63,7 @@ spec:
       name: data
     spec:
       accessModes: [ "ReadWriteOnce" ]
-      storageClassName: longhorn
+      storageClassName: longhorn-fast
       resources:
         requests:
           storage: 10Gi
