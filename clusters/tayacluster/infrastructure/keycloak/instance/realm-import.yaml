@@ -1,0 +1,38 @@
+apiVersion: k8s.keycloak.org/v2alpha1
+kind: KeycloakRealmImport
+metadata:
+  name: tayacluster-realm
+  namespace: keycloak
+spec:
+  keycloakCRName: keycloak
+  realm:
+    id: tayacluster
+    realm: tayacluster
+    enabled: true
+    displayName: "Taya Cluster"
+    clients:
+      - clientId: oauth2-proxy
+        enabled: true
+        clientAuthenticatorType: client-secret
+        secret: "*1QcBNGtOjyY2^#YJPbHP^fp88gwQXgO"
+        redirectUris:
+          - "https://longhorn.taya.net/oauth2/callback"
+          - "https://flux.taya.net/oauth2/callback"
+          - "https://grafana.taya.net/oauth2/callback"
+        webOrigins:
+          - "https://longhorn.taya.net"
+          - "https://flux.taya.net"
+          - "https://grafana.taya.net"
+        standardFlowEnabled: true
+        directAccessGrantsEnabled: false
+        publicClient: false
+        protocol: openid-connect
+        attributes:
+          "access.token.lifespan": "3600"
+        defaultClientScopes:
+          - email
+          - profile
+          - roles
+        optionalClientScopes:
+          - address
+          - phone
