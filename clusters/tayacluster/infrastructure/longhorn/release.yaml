@@ -31,3 +31,13 @@ spec:
 
     longhornUI:
       replicas: 1
+
+    longhornManager:
+      extraVolumes:
+        - name: longhorn-hdd
+          hostPath:
+            path: /var/lib/longhorn-hdd
+      extraVolumeMounts:
+        - name: longhorn-hdd
+          mountPath: /var/lib/longhorn-hdd
+          mountPropagation: Bidirectional
