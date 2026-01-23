@@ -35,7 +35,7 @@ spec:
       pass-authorization-header: "true"
       pass-access-token: "true"
       skip-provider-button: "true"
-      upstream: http://flux-operator.flux-system.svc.cluster.local:8081
+      upstream: http://flux-operator.flux-system.svc.cluster.local:9080
       http-address: 0.0.0.0:4180
       reverse-proxy: "true"
       whitelist-domain: .taya.net
