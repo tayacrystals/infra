@@ -34,7 +34,7 @@ spec:
       set-authorization-header: "true"
       pass-authorization-header: "true"
       skip-provider-button: "true"
-      upstream: http://weave-gitops.weave-gitops.svc.cluster.local:9001
+      upstream: http://flux-operator.flux-system.svc.cluster.local:8081
       http-address: 0.0.0.0:4180
       reverse-proxy: "true"
       whitelist-domain: .taya.net
