@@ -13,6 +13,25 @@ spec:
         kind: HelmRepository
         name: longhorn
         namespace: longhorn-system
+  postRenderers:
+    - kustomize:
+        patches:
+          - target:
+              kind: DaemonSet
+              name: longhorn-manager
+            patch: |
+              - op: add
+                path: /spec/template/spec/volumes/-
+                value:
+                  name: longhorn-hdd
+                  hostPath:
+                    path: /var/lib/longhorn-hdd
+              - op: add
+                path: /spec/template/spec/containers/0/volumeMounts/-
+                value:
+                  name: longhorn-hdd
+                  mountPath: /var/lib/longhorn-hdd
+                  mountPropagation: Bidirectional
   values:
     defaultSettings:
       defaultDataPath: /var/lib/longhorn
@@ -31,13 +50,3 @@ spec:
 
     longhornUI:
       replicas: 1
-
-    longhornManager:
-      extraVolumes:
-        - name: longhorn-hdd
-          hostPath:
-            path: /var/lib/longhorn-hdd
-      extraVolumeMounts:
-        - name: longhorn-hdd
-          mountPath: /var/lib/longhorn-hdd
-          mountPropagation: Bidirectional
