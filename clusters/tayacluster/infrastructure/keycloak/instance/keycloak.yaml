@@ -6,7 +6,8 @@ metadata:
 spec:
   instances: 1
   hostname:
-    hostname: auth.taya.net
+    hostname: https://auth.taya.net
+    admin: https://auth.taya.net
   http:
     httpEnabled: true
     httpPort: 8080

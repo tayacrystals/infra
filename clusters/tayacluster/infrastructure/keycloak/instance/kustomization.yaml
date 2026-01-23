@@ -3,4 +3,3 @@ kind: Kustomization
 resources:
   - keycloak.yaml
   - ingress.yaml
-  - envoy-config.yaml
