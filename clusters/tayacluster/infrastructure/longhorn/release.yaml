@@ -25,12 +25,12 @@ spec:
                 value:
                   name: longhorn-hdd
                   hostPath:
-                    path: /var/lib/longhorn-hdd
+                    path: /var/mnt/longhorn-hdd
               - op: add
                 path: /spec/template/spec/containers/0/volumeMounts/-
                 value:
                   name: longhorn-hdd
-                  mountPath: /var/lib/longhorn-hdd
+                  mountPath: /var/mnt/longhorn-hdd
                   mountPropagation: Bidirectional
   values:
     defaultSettings:
