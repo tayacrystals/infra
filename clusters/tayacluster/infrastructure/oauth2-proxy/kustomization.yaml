@@ -4,6 +4,7 @@ resources:
   - namespace.yaml
   - repository.yaml
   - secrets.yaml
+  - secrets-flux.yaml
   - release.yaml
   - release-flux.yaml
   - ingress-longhorn.yaml
