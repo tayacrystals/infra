@@ -49,5 +49,3 @@ spec:
                   secretKeyRef:
                     name: keycloak-admin-credentials
                     key: password
-              - name: KC_PROXY
-                value: "edge"
