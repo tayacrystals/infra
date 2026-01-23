@@ -18,7 +18,7 @@ spec:
 
     config:
       existingSecret: oauth2-proxy-secrets
-      cookieName: _oauth2_proxy_longhorn
+      cookieName: _oauth2_proxy
 
     extraArgs:
       provider: oidc
