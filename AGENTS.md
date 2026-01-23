@@ -8,6 +8,10 @@ GitOps repository for a 4-node Talos Kubernetes cluster (`tayacluster`). Manages
 
 **Stack**: Talos OS, Kubernetes 1.35, Flux v2.7.5, Cilium (CNI + ingress), Longhorn (storage), Cloudflare Tunnel (external access)
 
+> Make sure to use the `kubeconfig` from /talos/kubeconfig to access the cluster.
+
+whenever possible use gitops principles to make changes to the cluster and dont make changes directly to the cluster with kubectl. mainly use kubectl to check the status of resources and find out what we might want to change in git.
+
 ## Common Commands
 
 ```bash
