@@ -1,8 +1,3 @@
-- fix oauthproxy 500 on login
-- remove weave gitops thing and replace it with the builtin dashboard from flux operator
-- fix grafana login
-
-
 - start moving services from my other servers to this cluster
 - set up grafana dashboards
 

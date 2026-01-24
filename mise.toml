@@ -34,3 +34,7 @@ run = "talosctl dashboard -n $NODE_1_IP -n $NODE_2_IP -n $NODE_3_IP -n $NODE_4_I
 description = "Apply Talos configuration to all nodes"
 run = "talosctl apply-config -n $NODE_1_IP -f talos/$NODE_1_TYPE.yaml && talosctl apply-config -n $NODE_2_IP -f talos/$NODE_2_TYPE.yaml && talosctl apply-config -n $NODE_3_IP -f talos/$NODE_3_TYPE.yaml && talosctl apply-config -n $NODE_4_IP -f talos/$NODE_4_TYPE.yaml"
 
+[tasks.flux-reconcile]
+description = "Force Flux to reconcile git source and all kustomizations"
+run = "flux reconcile source git flux-system --namespace flux-system && flux reconcile kustomization infrastructure --namespace flux-system --with-source && flux reconcile kustomization infrastructure-config --namespace flux-system --with-source && flux reconcile kustomization apps --namespace flux-system --with-source"
+
