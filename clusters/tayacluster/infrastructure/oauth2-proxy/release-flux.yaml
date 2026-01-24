@@ -5,6 +5,9 @@ metadata:
   namespace: oauth2-proxy
 spec:
   interval: 1h
+  dependsOn:
+    - name: keycloak-instance
+      namespace: keycloak
   chart:
     spec:
       chart: oauth2-proxy
