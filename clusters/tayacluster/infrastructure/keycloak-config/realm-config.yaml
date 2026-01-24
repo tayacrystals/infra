@@ -37,7 +37,7 @@ data:
         name: Grafana
         enabled: true
         clientAuthenticatorType: client-secret
-        secret: "$(GRAFANA_CLIENT_SECRET)"
+        secret: "${GRAFANA_CLIENT_SECRET}"
         redirectUris:
           - "https://grafana.taya.net/*"
         webOrigins:
@@ -67,7 +67,7 @@ data:
         name: OAuth2 Proxy
         enabled: true
         clientAuthenticatorType: client-secret
-        secret: "$(OAUTH2_PROXY_CLIENT_SECRET)"
+        secret: "${OAUTH2_PROXY_CLIENT_SECRET}"
         redirectUris:
           - "https://longhorn.taya.net/oauth2/callback"
           - "https://flux.taya.net/oauth2/callback"
