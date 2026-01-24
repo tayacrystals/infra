@@ -11,6 +11,6 @@ resources:
   - cloudnative-pg
   - keycloak
   - keycloak-config
-  - oauth2-proxy
+  - oauth2-proxy-kustomization.yaml
   - monitoring
   - tailscale
